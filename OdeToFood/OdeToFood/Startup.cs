@@ -16,11 +16,12 @@ namespace OdeToFood
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IGreeter, Greeter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-                               IConfiguration configuration)
+                               IGreeter greeter)
         {
             if (env.IsDevelopment())
             {
@@ -29,7 +30,7 @@ namespace OdeToFood
 
             app.Run(async (context) =>
             {
-                string greeting = configuration["Greeting"];
+                string greeting = greeter.GetMessageOfTheDay();
                 await context.Response.WriteAsync(greeting);
             });
         }
