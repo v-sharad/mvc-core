@@ -1,4 +1,5 @@
 .vs
+.vscode
 OdeToFood/OdeToFood/bin/*
 OdeToFood/OdeToFood/obj/*
 *.cache
