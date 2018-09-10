@@ -1,4 +1,6 @@
 .vs
+OdeToFood/OdeToFood/bin/*
+OdeToFood/OdeToFood/obj/*
 *.cache
 *.pdb
 *.dll
