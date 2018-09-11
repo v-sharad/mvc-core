@@ -18,6 +18,7 @@ namespace OdeToFood
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IGreeter, Greeter>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +50,10 @@ namespace OdeToFood
                     #endregion
                 });
 
-            app.UseDefaultFiles(); //Use index.html as default page
+            //app.UseDefaultFiles(); //Use index.html as default page
             app.UseStaticFiles();// Use static files like .js .html 
+
+            app.UseMvcWithDefaultRoute();
 
             app.UseWelcomePage(
                 new WelcomePageOptions
