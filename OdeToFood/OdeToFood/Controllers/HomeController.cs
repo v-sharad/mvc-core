@@ -27,5 +27,11 @@ namespace OdeToFood.Controllers
             model.CurrentMessage = _greeter.GetMessageOfTheDay();
             return View(model);
         }
+
+        public IActionResult Details(int Id)
+        {
+            var model = _restaurantData.Get(Id);            
+            return View(model);
+        }
     }
 }
