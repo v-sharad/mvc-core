@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace OdeToFood
 {
@@ -21,12 +22,32 @@ namespace OdeToFood
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-                               IGreeter greeter)
+                               IGreeter greeter,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            // Function that will be invoked only once when .net core framework is setting up the pipeline
+            app.Use(next =>
+                {
+                    #region middleware function that is invoked per Http request
+                    return async context =>
+                    {
+                        logger.LogInformation("Request incoming");
+                        if (context.Request.Path.StartsWithSegments("/mym"))
+                        {
+                            await context.Response.WriteAsync("My Middleware responding!!!");
+                            logger.LogInformation("Request handled");
+                        }
+                        else
+                        {
+                            await next(context);
+                            logger.LogInformation("Response outgoing");
+                        }
+                    };
+                    #endregion
+                });
 
             app.UseWelcomePage(
                 new WelcomePageOptions
