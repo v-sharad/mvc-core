@@ -24,9 +24,9 @@ namespace OdeToFood
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
                                IGreeter greeter,ILogger<Startup> logger)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment()) 
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); //gives details of exception, if any
             }
             // Function that will be invoked only once when .net core framework is setting up the pipeline
             app.Use(next =>
@@ -58,8 +58,9 @@ namespace OdeToFood
 
             app.Run(async (context) =>
             {
+                //throw new Exception("Exception");
                 string greeting = greeter.GetMessageOfTheDay();
-                await context.Response.WriteAsync(greeting);
+                await context.Response.WriteAsync($"{greeting} : {env.EnvironmentName}");
             });
         }
     }
