@@ -28,6 +28,13 @@ namespace OdeToFood
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWelcomePage(
+                new WelcomePageOptions
+                {
+                    Path="/wp"
+                }
+                );
+
             app.Run(async (context) =>
             {
                 string greeting = greeter.GetMessageOfTheDay();
