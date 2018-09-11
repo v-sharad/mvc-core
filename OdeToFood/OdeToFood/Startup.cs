@@ -49,6 +49,9 @@ namespace OdeToFood
                     #endregion
                 });
 
+            app.UseDefaultFiles(); //Use index.html as default page
+            app.UseStaticFiles();// Use static files like .js .html 
+
             app.UseWelcomePage(
                 new WelcomePageOptions
                 {
