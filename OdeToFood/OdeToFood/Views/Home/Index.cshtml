@@ -2,30 +2,14 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <h1>List of Restaurants</h1>
-<table>
-    @foreach (var restaurant in Model.Restaurants)
-    {
-        <tr>
-            <td>
-                @restaurant.Id
-            </td>
-            <td>
-                @restaurant.Name
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@restaurant.Id">More</a>
-            </td>
-            <td>
-                <a asp-page="/Restaurants/Edit" asp-route-id="@restaurant.Id">Edit</a>
-            </td>
-        </tr>
-    }
-</table>
-<div>
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    @Html.Partial("_Summary", restaurant)
+}
+
+ <div>
     <a asp-action="Create" asp-controller="Home">Create New</a>
 </div>
-@section footer
-    {
-    @Model.CurrentMessage
-}
