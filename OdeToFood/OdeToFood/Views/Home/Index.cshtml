@@ -1,5 +1,5 @@
 ﻿@model HomeIndexViewModel
-@{ 
+@{
     ViewBag.Title = "Index";
 }
 <h1>List of Restaurants</h1>
@@ -15,6 +15,9 @@
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@restaurant.Id">More</a>
+            </td>
+            <td>
+                <a asp-page="/Restaurants/Edit" asp-route-id="@restaurant.Id">Edit</a>
             </td>
         </tr>
     }
