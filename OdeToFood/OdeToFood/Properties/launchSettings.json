@@ -1,9 +1,9 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62324",
+      "applicationUrl": "https://localhost:44331/",
       "sslPort": 44331
     }
   },
@@ -18,10 +18,10 @@
     "OdeToFood": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5432",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
-      }
+      },
+      "applicationUrl": "https://localhost:5432"
     }
   }
 }

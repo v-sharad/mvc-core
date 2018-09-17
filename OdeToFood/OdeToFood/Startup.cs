@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +29,16 @@ namespace OdeToFood
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddOpenIdConnect(options =>
+            {
+                _configuration.Bind("GoogleOpenId", options);
+            })
+            .AddCookie();
             services.AddSingleton<IGreeter, Greeter>();
             services.AddDbContext<OdeToFoodDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("OdeToFood")));
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
@@ -40,6 +53,10 @@ namespace OdeToFood
             {
                 app.UseDeveloperExceptionPage(); //gives details of exception, if any
             }
+
+            app.UseRewriter(new RewriteOptions()
+                                .AddRedirectToHttpsPermanent());
+
             // Function that will be invoked only once when .net core framework is setting up the pipeline
             app.Use(next =>
                 {
@@ -63,6 +80,8 @@ namespace OdeToFood
 
             //app.UseDefaultFiles(); //Use index.html as default page
             app.UseStaticFiles();// Use static files like .js .html 
+
+            app.UseAuthentication();
 
             app.UseMvc(ConfigureRoutes);
 
