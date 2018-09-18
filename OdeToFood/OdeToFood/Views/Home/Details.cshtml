@@ -1,13 +1,18 @@
 ﻿@model Restaurant
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Details</title>
-</head>
-<body>
-    <h1>@Model.Name</h1>
-    <div>Id : @Model.Id</div>
-    <div>Cuisine : @Model.Cuisine</div>
-    <div><a asp-action="Index" asp-controller="Home">Back</a></div>
-</body>
-</html>
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <img class="d-flex rounded img-fluid mb-3 mb-lg-0 col-6" src="~/img/products-03.jpg" alt="">
+            <div class="bg-faded p-5 rounded col-6 mx-auto">
+                <h1 class="section-heading mb-0">@Model.Name</h1>
+                <h2 class="section-heading mb-0">
+                    <span class="section-heading-upper">Id : @Model.Id</span>
+                    <span class="section-heading-upper">Cuisine : @Model.Cuisine</span>
+                </h2>
+                <a class="btn btn-outline-dark" asp-action="Index" asp-controller="Home">Back</a>
+            </div>
+        </div>
+            
+        </div>
+</section>

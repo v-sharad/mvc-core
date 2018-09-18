@@ -1,5 +1,6 @@
 .vs
 .vscode
+OdeToFood/OdeToFood/node_modules/*
 OdeToFood/OdeToFood/bin/*
 OdeToFood/OdeToFood/obj/*
 *.cache

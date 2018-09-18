@@ -1,15 +1,17 @@
 ﻿@model Restaurant
 
-<section>
-    <h3> @Model.Name</h3>
-    <div>
-        ID - @Model.Id
-    </div>
-    <div>
-        Cuisine - @Model.Cuisine
-    </div>
-    <div>
-        <a asp-action="Details" asp-route-id="@Model.Id">More</a>
-        <a asp-page="/Restaurants/Edit" asp-route-id="@Model.Id">Edit</a>
+<section class="page-section">
+    <div class="container">
+        <div class="row">
+            <img class="d-flex rounded img-fluid mb-3 mb-lg-0 col-6" src="img/products-03.jpg" alt="">
+            <div class="bg-faded p-5 rounded col-6">
+                <h2 class="section-heading mb-0">
+                    <span class="section-heading-upper">@Model.Cuisine</span>
+                    <span class="section-heading-lower">@Model.Name</span>
+                </h2>
+                <a class="btn btn-outline-dark" asp-action="Details" asp-route-id="@Model.Id">More</a>
+                <a class="btn btn-outline-dark" asp-page="/Restaurants/Edit" asp-route-id="@Model.Id">Edit</a>
+            </div>
+        </div>
     </div>
 </section>

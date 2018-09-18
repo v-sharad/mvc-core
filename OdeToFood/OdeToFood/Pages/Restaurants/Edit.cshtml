@@ -1,15 +1,27 @@
 ﻿@page "{id}"
 @model EditModel
 
-<h1>Edit @Model.Restaurant.Name</h1>
-<form method="post">
-    <input type="hidden" asp-for="Restaurant.Id">
-    <label asp-for="Restaurant.Name"></label>
-    <input asp-for="Restaurant.Name" />
-    <span asp-validation-for="Restaurant.Name"></span>
+<section class="page-section">
+    <div class="container">
+        <h1 class="site-heading-lower text-center text-white d-none d-lg-block">Edit @Model.Restaurant.Name</h1>
+        <div class="bg-faded p-5 rounded col-6 mx-auto">
+            <form method="post">
+                <input type="hidden" asp-for="Restaurant.Id">
+                <label class="section-heading-upper" asp-for="Restaurant.Name"></label>
+                <input asp-for="Restaurant.Name" />
+                <span class="section-heading-upper" asp-validation-for="Restaurant.Name"></span>
 
-    <label asp-for="Restaurant.Cuisine"></label>
-    <select asp-for="Restaurant.Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()"></select>
-    <span asp-validation-for="Restaurant.Cuisine"></span>
-    <input type="submit" name="save" value="Save" />
-</form>
+                <label class="section-heading-upper" asp-for="Restaurant.Cuisine"></label>
+                <select class="section-heading-upper" asp-for="Restaurant.Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()"></select>
+                <span class="section-heading-upper" asp-validation-for="Restaurant.Cuisine"></span>
+                <div>
+                    <input class="btn btn-outline-dark" type="submit" name="save" value="Save" />
+                    <a class="btn btn-outline-dark" asp-action="Index" asp-controller="Home">Back</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+

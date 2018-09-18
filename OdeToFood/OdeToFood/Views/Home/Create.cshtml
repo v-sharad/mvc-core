@@ -1,13 +1,24 @@
 ﻿@model Restaurant
 
-<h1>Create</h1>
-<form method="post">
-    <label asp-for="Name"></label>
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
 
-    <label asp-for="Cuisine"></label>
-    <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()"></select>
-    <span asp-validation-for="Cuisine"></span>
-    <input type="submit" name="save" value="Save" />
-</form>
+<section class="page-section">
+    <div class="container">
+        <h1 class="site-heading-lower text-center text-white d-none d-lg-block">Create</h1>
+
+        <div class="bg-faded p-5 rounded col-6 mx-auto">
+            <form method="post">
+                <label class="section-heading-upper" asp-for="Name"></label>
+                <input class="section-heading-upper" asp-for="Name" />
+                <span class="section-heading-upper" asp-validation-for="Name"></span>
+
+                <label class="section-heading-upper" asp-for="Cuisine"></label>
+                <select class="section-heading-upper" asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()"></select>
+                <span class="section-heading-upper" asp-validation-for="Cuisine"></span>
+                <div>
+                    <input class="btn btn-outline-dark" type="submit" name="save" value="Save" />
+                    <a class="btn btn-outline-dark" asp-action="Index" asp-controller="Home">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
